@@ -1,0 +1,6 @@
+document.getElementById('year').textContent = new Date().getFullYear();
+const menu=document.querySelector('.menu-button'),navLinks=document.querySelector('.nav-links');
+menu?.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+const form=document.getElementById('lead-form'),status=document.getElementById('form-status');
+form?.addEventListener('submit',(event)=>{event.preventDefault();const data=Object.fromEntries(new FormData(form).entries());const subject=encodeURIComponent(`Consulting inquiry — ${data.company}`);const body=encodeURIComponent(`Name: ${data.name}\nCompany: ${data.company}\nEmail: ${data.email}\nAnnual Revenue: ${data.revenue}\n\nWhat they want help solving:\n${data.problem}`);status.textContent='Opening your email client with the inquiry pre-filled…';window.location.href=`mailto:?subject=${subject}&body=${body}`;});
